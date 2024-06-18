@@ -1,0 +1,39 @@
+class Solution {
+    public boolean checkValidString(String s) {
+        Stack<Integer>starstack=new Stack<>();
+        Stack<Integer>leftstack=new Stack<>();
+
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)=='(')
+            {
+                leftstack.push(i);
+            }
+            else if(s.charAt(i)==')')
+            {
+                if(!leftstack.isEmpty())
+                {
+                    leftstack.pop();
+                }
+                else if(!starstack.isEmpty())
+                {
+                    starstack.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                starstack.push(i);
+            }
+        }
+
+        while(!leftstack.isEmpty()&&!starstack.isEmpty())
+        {
+            int left=leftstack.pop();
+            int star=starstack.pop();
+            if(star<left)return false;
+        }
+        return leftstack.isEmpty();
+    }
+}
