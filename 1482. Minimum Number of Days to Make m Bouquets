@@ -1,0 +1,49 @@
+class Solution {
+    public boolean ispossible(int[] bloomDay,int m,int k,int md)
+    {
+        int ad=0,bc=0;
+        for(int i=0;i<bloomDay.length;i++)
+        {
+            if(bloomDay[i]<=md)
+            {
+                ad++;
+                if(ad==k)
+                {
+                    bc++;
+                    if(bc==m)
+                    {
+                        return true;
+                    }
+                    ad=0;
+                }
+            }
+            else{
+                ad=0;
+            }
+        }
+        return false;
+    }
+    public int minDays(int[] bloomDay, int m, int k) {
+        if(m*k>bloomDay.length) return -1;
+        int l=bloomDay[0],h=bloomDay[0];
+        for(int i=0;i<bloomDay.length;i++)
+        {
+            if(l>bloomDay[i]) l=bloomDay[i];
+            if(h<bloomDay[i]) h=bloomDay[i];
+        }
+        int res=-1;
+        while(l<=h)
+        {
+            int md=(h+l)/2;
+            if(ispossible(bloomDay,m,k,md))
+            {
+                res=md;
+                h=md-1;
+            }
+            else{
+                l=md+1;
+            }
+        }
+        return res;
+    }
+}
