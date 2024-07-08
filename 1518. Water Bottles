@@ -1,0 +1,13 @@
+class Solution {
+    public int numWaterBottles(int numBottles, int numExchange) {
+        int ans=numBottles;
+        while(numBottles>=numExchange)
+        {
+            int refil=numBottles/numExchange;
+            ans+=refil;
+            int rem=numBottles%numExchange;
+            numBottles=refil+rem;
+        }
+        return ans;
+    }
+}
