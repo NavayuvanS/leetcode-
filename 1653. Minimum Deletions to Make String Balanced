@@ -1,0 +1,15 @@
+class Solution {
+    public int minimumDeletions(String s) {
+        int pre=0,ans=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)=='b') pre++;
+            else if(pre>0 && s.charAt(i)=='a')
+            {
+                pre--;
+                ans++;
+            }
+        }
+        return ans;
+    }
+}
