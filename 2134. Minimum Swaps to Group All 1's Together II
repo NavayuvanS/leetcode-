@@ -1,0 +1,26 @@
+class Solution {
+    public int minSwaps(int[] nums) {
+        int windowsize=0;
+        for(int num:nums) windowsize+=num;
+        int curzeros=0;
+        for(int i=0;i<windowsize;i++)
+        {
+            if(nums[i]==0) curzeros++;
+        }
+
+        int start=0;
+        int end=windowsize-1;
+        int minzeros=curzeros;
+        int n=nums.length;
+        while(start<n)
+        {
+            if(nums[start]==0) curzeros--;
+            start++;
+            end++;
+            if(nums[end%n]==0) curzeros++;
+
+            minzeros=Math.min(minzeros,curzeros);
+        }
+        return minzeros;
+    }
+}
