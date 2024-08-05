@@ -1,0 +1,26 @@
+class Solution {
+    public int rangeSum(int[] nums, int n, int left, int right) {
+        ArrayList<Integer> list=new ArrayList<Integer>();
+        for(int i=0;i<nums.length;i++)
+        {
+            list.add(nums[i]);
+            int a=nums[i];
+            for(int j=i+1;j<nums.length;j++)
+            {
+                a+=nums[j];
+                list.add(a);
+            }
+            a=0;
+        }
+        Collections.sort(list);
+        int ans=0;
+        //int mod=(int)Math.pow(10,9)+7;
+        int mod = (int)(1e9 + 7);
+
+        for(int i=left-1;i<right;i++)
+        {
+            ans=(ans+list.get(i))%mod;
+        }
+        return (int)ans;
+    }
+}
