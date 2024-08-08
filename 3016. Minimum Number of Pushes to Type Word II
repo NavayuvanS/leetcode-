@@ -1,0 +1,37 @@
+class Solution {
+    public int minimumPushes(String word) {
+        int []a=new int[26];
+        for(int i=0;i<word.length();i++)
+        {
+            int n=word.charAt(i)-'a';
+            a[n]++;
+        }
+        Arrays.sort(a);
+        int count=1;
+        int ans=0;
+        for(int i=25;i>=0;i--)
+        {
+            if(a[i]>0 && count<=8)
+            {
+                ans=ans+(1*a[i]);
+                count++;
+            }
+            else if(a[i]>0 && (count>8 && count<=16))
+            {
+                ans=ans+(2*a[i]);
+                count++;
+            }
+            else if(a[i]>0 && (count>16 && count<=24))
+            {
+                ans=ans+(3*a[i]);
+                count++;
+            }
+            else if(a[i]>0 && (count>24))
+            {
+                ans=ans+(4*a[i]);
+                count++;
+            }
+        }
+        return ans;
+    }
+}
